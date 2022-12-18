@@ -14,6 +14,8 @@ This regex tutorial will teach you how to read and understand regular expression
 
 \.([a-z\.]{2,6})$/ checks for any characters "a-z" after the ".", including more "."s if necessary. the {2,6} will allow for a repeated character up to 6 times in a row.
 
+The /^ and $/ at the beginning and end of the expression allow for a perfect read, capture, and match of the read e-mail address.
+
 This regex allow for matching of e-mail addresses such as:
 
 ryan@ryan.com
