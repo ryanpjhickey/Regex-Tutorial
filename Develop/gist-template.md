@@ -117,75 +117,97 @@ This will find Betweennn, Betweennnn, and Betweennnnn.
 
 ### OR Operator
 
-|
+When | is used, it will match the previous string followed by two options denoted on either side of the |.
 
-[]
+For example x(y|z) will match a string as xy or xz.
+
+[] can be used similarly, such as x[yz],
+
+The difference is that in the first example, | will capture y or z, while [] will not capture y or z.
 
 ### Character Classes
 
-\d
+\d matches a single character that is a digit
 
-\w
+\w matches an alphanumeric character followed by an underscore, which is a "word" character
 
-\s
+\s matches a whitespace character (i.e. tabs and line breaks)
 
-.
+. matches any character
+
+\d, \w, & \s all will perform the inverse by using a capital letter instead. For example, \D would match a single character that is not a digit, etc.
 
 ### Flags
 
-g
+g does not return after the first match, restarting the subsequent searches from the end of the previous match.
 
-m
+m when enabled ^ and $ will match the start and end of a line, instead of the whole string.
 
-i
+i makes the whole expression case-insensitive (for instance /aBc/i would match AbC).
 
 ### Grouping and Capturing
 
-()
+Parentheses allow you to create a capturing group for whatever value is within the parentheses
 
-(?:)
+Example:
 
-(?<foo>)
+x(yz)
+
+Using this in conjuction with ?: allows you to disable the capturing group like so:
+
+x(?:yz)
+
+Finally, using ?<foo> in conjuction with x(yz) allows you to associate a name with the groyp, like so:
+
+x(?<foo>yz)
 
 ### Bracket Expressions
 
-[abc]
+[] allows you to match a string that has any of the characters inside.
 
-[a-c]
+For example [xyz] will match any string with an x, a y, or a z. x|y|z is also the same thing, as well as [x-z].
 
-[a-fA-F0-9]
+[w-zW-Z0-9] This will return a string that has a single hexadecimal digit and it is case insensitive.
 
-[0-9]%
-[^a-za-z]
+[0-9]% This will return a string with any number 0-9 that happens to occur before a % symbol.
+
+[^a-za-z] This will return a string that HAS NOT used any letter from a-z, regardless of case. The ^ acts as a negator in this case, similiar to !=
 
 ### Greedy and Lazy Match
 
-(\*+{})
+(\*+{}) These quantifiers are greedy operators which means that they look as far as they can for a match in the provided text.
 
-<.+?>
+<.+> for example would match <h1>Awesome Title</h1> from:
 
-<[^,<>]+>
+"This is a <h1>Awesome Title</h1>!!"
+
+<.+?> The addition of the question mark here allows us to only catch the h1 tag and its content, making it "lazy."
+
+<[^,<>]+> is another solution here that should be used to avoid usage of the global "." as it is a stricter regex.
 
 ### Boundaries
 
-\babc\b
+\blanguage\b performs a whole words only search that will search for the word "language"
 
-\Babc\B
+\Blanguage\B performs the inverse of that and will only match the word language if it is in the midst of other characters. For example, it will find: "reallycoollanguage"
 
 ### Back-references
 
-([abc])\1
-([abc])([de])\2\1
-(?<foo>[abc])\k<foo>
+([xyz])\1 using \1 will match the text that is captured in the first capturing group.
+([xyz])([efg])\2\1 we can use \2, \3, etc. to reference the text in the second, third capturing group as well
+(?<foo>[xyz])\k<foo> allows us to put a name to the group and we can reference it later with \k<foo>
 
 ### Look-ahead and Look-behind
 
-d(?=r)
-(?<=r)d
+d(?=r) matches a d only if is followed by r, while also allowing for r to not be included in the final regex match
+(?<=r)d matches a d only if is preceded by an r, while also allowing for r to not be included in the final regex match
 
-d(?!r)
-(?<!r)d
+d(?!r) matches a d only if is not followed by r, while also allowing for r to not be included in the final regex match
+(?<!r)d matches a d only if is not preceded by an r, while also allowing for r to not be included in the final regex match
 
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+My name is Ryan Hickey and I created this regex tutorial. Please check out some of my other projects at:
+https://github.com/ryanpjhickey
+
+Thank you for reading!
