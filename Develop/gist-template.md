@@ -4,9 +4,23 @@ Regex, also called regular expressions, search bodies of text for specified char
 
 ## Summary
 
-Briefly summarize the regex you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
-
 Matching an Email – /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+
+This regex tutorial will teach you how to read and understand regular expressions such as the one noted above.
+
+/^([a-z0-9_\.-]+)@ Checks for any hexadecimal characters followed by an "@" afterwards.
+
+@([\da-z\.-]+)\. then checks for any hexidecimal characters after the "@" but before the ".", but this time not including the "\_" from last time.
+
+\.([a-z\.]{2,6})$/ checks for any characters "a-z" after the ".", including more "."s if necessary. the {2,6} will allow for a repeated character up to 6 times in a row.
+
+This regex allow for matching of e-mail addresses such as:
+
+ryan@ryan.com
+
+PeguinLovr84@comcast.net
+
+tester@test.deploy.com
 
 ## Table of Contents
 
